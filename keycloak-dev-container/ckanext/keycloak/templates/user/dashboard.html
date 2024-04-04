@@ -1,0 +1,28 @@
+{% ckan_extends %}
+
+{% block primary %}
+  <article class="module">
+    {% block page_header %}
+      <header class="module-content page-header hug">
+      {% block content_primary_nav %}
+        <ul class="nav nav-tabs">
+          {% block dashboard_nav_links %}
+            {{ h.build_nav_icon('dashboard.datasets', h.humanize_entity_type('package', dataset_type, 'my label') or _('My Datasets'), icon='sitemap') }}
+            {{ h.build_nav_icon('dashboard.organizations', h.humanize_entity_type('organization', org_type, 'my label') or _('My Organizations'), icon='building') }}
+            {{ h.build_nav_icon('dashboard.groups', h.humanize_entity_type('group', group_type, 'my label') or _('My Groups'), icon='users') }}
+          {% endblock dashboard_nav_links %}
+        </ul>
+     {% endblock %}
+      </header>
+    {% endblock %}
+    <div class="module-content">
+      {% if self.page_primary_action() | trim %}
+        <div class="page_primary_action">
+          {% block page_primary_action %}{% endblock %}
+        </div>
+      {% endif %}
+      {% block primary_content_inner %}
+      {% endblock %}
+    </div>
+  </article>
+{% endblock %}
